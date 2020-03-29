@@ -57,7 +57,8 @@ export default withFormik({
     mapPropsToValues: () => ({
         password: '',
         email: '',
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
+        username: ''
     }),
 })(AuthorizationForm);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Background, Title, BottomContainer, Link, RegisterLink } from 'common-styles';
+import { Alert } from 'react-native';
 import backgroundImage from 'assets/images/auth-bg.png';
 import AuthorizationForm from 'forms/AuthorizationForm';
 import PropTypes from 'prop-types';
@@ -27,8 +28,12 @@ const LoginScreen = ({ navigation, login }) => {
         type: 'password',
     }];
 
-    const onSubmit = ({ email, password }) => {
-        login({ email, password })
+    const onSubmit = async ({ email, password }) => {
+        try {
+            await login({ email, password });
+        } catch (e) {
+            Alert.alert('Error', e.error.response.data);
+        }
     };
 
     return (

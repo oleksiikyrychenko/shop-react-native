@@ -17,8 +17,10 @@ export const register = data => ({
     type: AUTH_REGISTER,
     request: {
         method: 'POST',
-        url: '/register',
-        data
+        url: 'users/',
+        data: {
+            user: {...data}
+        }
     }
 });
 
