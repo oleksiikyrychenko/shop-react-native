@@ -6,8 +6,20 @@ import SettingsIcon from '../../svgIcons/SettingsIcon';
 import LogoutIcon from '../../svgIcons/LogoutIcon';
 import PlusIcon from '../../svgIcons/PlusIcon';
 import { TouchableWithoutFeedback } from 'react-native';
+import {signOut} from '../../../store/auth/actions';
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = ({ navigation, signOut }) => {
+
+    const logout = async () => {
+        try {
+            await signOut();
+            navigation.navigate('Login');
+        } catch (e) {
+            console.log(e);
+        }
+
+    };
+
     const menuItem = [{
         title: 'My favorite',
         icon: <LikeIcon width={'50px'} height={'50px'} />,
@@ -23,7 +35,7 @@ const ProfileScreen = ({ navigation }) => {
     }, {
         title: 'Logout',
         icon: <LogoutIcon width={'50px'} height={'50px'} />,
-        link: 'logout'
+        callback: logout
     }];
     
     return (
@@ -36,7 +48,7 @@ const ProfileScreen = ({ navigation }) => {
             </AvatarContainer>
             <ItemsContainer>
                 {menuItem.map((item, index)=> (
-                    <TouchableWithoutFeedback key={index} onPress={() => navigation.navigate(item.link)}>
+                    <TouchableWithoutFeedback key={index} onPress={() => item.link ? navigation.navigate(item.link) : item.callback()}>
                         <ItemContainer>
                             {item.icon}
                             <ItemText>{item.title}</ItemText>
@@ -52,4 +64,4 @@ const mapStateToProps = state => ({
     user: state.auth.user 
 });
 
-export default connect(mapStateToProps, null)(ProfileScreen);
+export default connect(mapStateToProps, { signOut })(ProfileScreen);

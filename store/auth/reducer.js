@@ -72,7 +72,6 @@ export default (state = initialState, action) => {
         }
 
         case SIGN_OUT: {
-            console.log('HERE');
             axiosController.deleteToken();
             return {
                 ...state,
