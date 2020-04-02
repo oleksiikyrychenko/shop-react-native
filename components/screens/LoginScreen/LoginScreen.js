@@ -31,6 +31,7 @@ const LoginScreen = ({ navigation, login }) => {
     const onSubmit = async ({ email, password }) => {
         try {
             await login({ email, password });
+            navigation.navigate('Home');
         } catch (e) {
             Alert.alert('Error', e.error.response.data);
         }

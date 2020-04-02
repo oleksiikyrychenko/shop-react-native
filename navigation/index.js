@@ -14,7 +14,8 @@ import BasketIcon from '../components/svgIcons/BasketIcon';
 import SearchIcon from '../components/svgIcons/SearchIcon';
 import UserIcon from '../components/svgIcons/UserIcon';
 import ProductCreateScreen from '../components/screens/ProductCreateScreen';
-import ProductViewScreen from "../components/screens/ProductViewScreen";
+import ProductViewScreen from '../components/screens/ProductViewScreen';
+import SettingsScreen from '../components/screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 const Navigator = Stack.Navigator;
@@ -60,12 +61,13 @@ const AppNavigation = () => {
 };
 
 const Navigation = ({ isAuthenticated }) => (
-    <Navigator initialRouteName="Home">
+    <Navigator initialRouteName={isAuthenticated ? 'Home' : 'Login'}>
         <Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
-        <Screen name="Home" component={AppNavigation} />
+        <Screen name="Home" component={AppNavigation} options={{ headerLeft: null }}/>
         <Screen name="ProductCreate" component={ProductCreateScreen} options={{ title: 'Created new product' }} />
         <Screen name="ProductView" component={ProductViewScreen} />
+        <Screen name="Settings" component={SettingsScreen} />
     </Navigator>
 );
 

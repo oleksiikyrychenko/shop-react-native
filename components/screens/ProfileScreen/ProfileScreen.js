@@ -19,7 +19,7 @@ const ProfileScreen = ({ navigation }) => {
     }, {
         title: 'Settings',
         icon: <SettingsIcon width={'50px'} height={'50px'} />,
-        link: 'settings'
+        link: 'Settings'
     }, {
         title: 'Logout',
         icon: <LogoutIcon width={'50px'} height={'50px'} />,

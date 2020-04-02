@@ -6,8 +6,8 @@ import * as yup from 'yup';
 import {Container, DescriptionField} from './styles';
 import Uploader from '../../commonBlocks/Uploader';
 import CategorySelect from '../../inputs/CategorySelect';
-import {connect} from "react-redux";
-import {createProduct} from "../../../store/products/actions";
+import {connect} from 'react-redux';
+import {createProduct} from '../../../store/products/actions';
 
 const validationSchema = yup.object().shape({
     title: yup.string()
@@ -49,7 +49,6 @@ const ProductCreateScreen = ({ createProduct, navigation, authUser }) => {
                 >
                     {({handleSubmit, handleChange, errors}) => (
                         <View>
-                            {console.log(errors)}
                             <View>
                                 <Field
                                     name={'title'}

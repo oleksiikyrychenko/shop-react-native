@@ -32,3 +32,15 @@ export const getAuthUser = () => ({
         url: '/user/me'
     }
 });
+
+export const UPDATE_USER = 'UPDATE_USER';
+export const updateUser = (data, id) => ({
+    type: UPDATE_USER,
+    request: {
+        method: 'PUT',
+        url: `users/?pk=${id}`,
+        data: {
+            user: data
+        }
+    }
+});
