@@ -1,13 +1,16 @@
 import { success, error } from 'redux-saga-requests';
 import {
     GET_PRODUCTS,
-    GET_PRODUCT
+    GET_PRODUCT,
+    GET_CATEGORIES,
+    CREATE_PRODUCT
 } from './actions';
 import { STATE_STATUSES } from '../../utils/stateStatuses';
 
 const initialState = {
     items: [],
     item: {},
+    categories: [],
     status: STATE_STATUSES.INIT,
     exception: {
         message: null,
@@ -17,6 +20,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case GET_CATEGORIES:
+        case CREATE_PRODUCT:
         case GET_PRODUCT:
         case GET_PRODUCTS: {
             return processReducer(state);
@@ -38,6 +43,23 @@ export default (state = initialState, action) => {
             };
         }
 
+        case success(GET_CATEGORIES): {
+            return {
+                ...state,
+                status:STATE_STATUSES.SUCCESS,
+                categories: action.data.data
+            };
+        }
+
+        case success(CREATE_PRODUCT): {
+            return {
+                ...state,
+                status:STATE_STATUSES.SUCCESS,
+            };
+        }
+
+        case error(GET_CATEGORIES):
+        case error(CREATE_PRODUCT):
         case error(GET_PRODUCT):
         case error(GET_PRODUCTS): {
             return errorReducer(action, state);

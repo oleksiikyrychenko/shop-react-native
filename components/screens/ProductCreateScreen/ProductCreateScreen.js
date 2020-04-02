@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text,  } from 'react-native';
-import {Formik} from 'formik';
+import { View } from 'react-native';
+import { Formik } from 'formik';
 import { Button, ButtonTitle, Field } from '../../forms/AuthorizationForm/styles';
 import * as yup from 'yup';
 import {Container, DescriptionField} from './styles';
 import Uploader from '../../commonBlocks/Uploader';
+import CategorySelect from '../../inputs/CategorySelect';
+import {connect} from "react-redux";
+import {createProduct} from "../../../store/products/actions";
 
 const validationSchema = yup.object().shape({
     title: yup.string()
@@ -15,18 +18,38 @@ const validationSchema = yup.object().shape({
         .required('Price is required ')
 });
 
-const ProductCreateScreen = () => {
+const ProductCreateScreen = ({ createProduct, navigation, authUser }) => {
+    const [category, setCategory] = React.useState(null);
+    const [images, setImages] = React.useState([]);
+
+    const onSubmit = async (values) => {
+        const files = [];
+        images.map(item => files.push('data:image/jpeg;base64,' + item.data));
+        const data = {
+            ...values,
+            category_id: category.id,
+            files: files,
+            // TODO: auth user should be here
+            owner_id: 1
+        };
+
+        await createProduct(data);
+        navigation.navigate('Home');
+    };
+
     return (
         <>
-            <Uploader />
+            <Uploader handleImages={(files) => setImages(files)} />
+            <CategorySelect onSelectCategory={(category) => setCategory(category)}/>
             <Container>
                 <Formik
-                    onSubmit={() => {}}
-                    initialValues={{}}
+                    onSubmit={onSubmit}
+                    initialValues={{ title: '', description: '', price: '' }}
                     validationSchema={validationSchema}
                 >
-                    {({handleSubmit, errors, touched, isSubmitting, handleChange}) => (
+                    {({handleSubmit, handleChange, errors}) => (
                         <View>
+                            {console.log(errors)}
                             <View>
                                 <Field
                                     name={'title'}
@@ -45,9 +68,6 @@ const ProductCreateScreen = () => {
                                     placeholder={'Description'}
                                     multiline={true}
                                 />
-                                {/*{((errors[`${field.name}`] && touched[`${field.name}`]) || !isSubmitting) && (*/}
-                                {/*    <ValidationText>{errors[field.name]}</ValidationText>*/}
-                                {/*)}*/}
                             </View>
                             <Button onPress={handleSubmit} >
                                 <ButtonTitle>Add product</ButtonTitle>
@@ -60,4 +80,8 @@ const ProductCreateScreen = () => {
     );
 };
 
-export default ProductCreateScreen;
+const mapStateToProps = state => ({
+    authUser: state.auth.user
+});
+
+export default connect(mapStateToProps, { createProduct })(ProductCreateScreen);

@@ -10,23 +10,32 @@ import ImagePicker from 'react-native-image-picker';
 import {UploaderBlock, UploaderText} from './styles';
 import PlusIcon from '../../svgIcons/PlusIcon';
 
-const Uploader = ({ withoutUpload }) => {
+const Uploader = ({ handleImages }) => {
     const [images, setImages] = React.useState([]);
     const screenWidth = Math.round(Dimensions.get('window').width);
 
     const handleImagePicker = () => {
         const options = {
-            noData: true,
+            // noData: true,
+            storageOptions: {
+                skipBackup: true,
+                path: 'images',
+            },
         };
         ImagePicker.showImagePicker(options, response => {
+            console.log(response)
             if(response.uri){
-                setImages([...images, response]);
+                const newImages = [...images, response];
+                setImages(newImages);
+                handleImages(newImages);
             }
         });
     };
 
     const deleteImage = (image) => {
-        setImages(images.filter(item => item.uri !== image.uri));
+        const updatedImage = images.filter(item => item.uri !== image.uri);
+        setImages(updatedImage);
+        handleImages(updatedImage);
     };
 
     return (

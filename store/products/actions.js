@@ -15,3 +15,22 @@ export const getProduct = (id) => ({
         url: `product?pk=${id}`,
     }
 });
+
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const createProduct = (data) => ({
+    type: CREATE_PRODUCT,
+    request: {
+        method: 'POST',
+        url: 'product/',
+        data
+    }
+});
+
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const getCategories = (id = null) => ({
+    type: GET_CATEGORIES,
+    request: {
+        method: 'GET',
+        url: id ? `category/?pk=${id}` : 'category/',
+    }
+});

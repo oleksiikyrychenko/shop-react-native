@@ -13,3 +13,4 @@ justify-content: space-between;
 export const Title = styled.Text`
 font-size: 18px;
 `;
+

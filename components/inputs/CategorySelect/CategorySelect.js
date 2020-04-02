@@ -66,7 +66,7 @@ const CategorySelect = ({ getCategories, categories, onSelectCategory }) => {
                 </View>
             </Modal>
             <View>
-                <Button title={selectedCategory['title'] ? selectedCategory.title :'Choose category'} onPress={() => setShowModal(true)}/>
+                <Button color="#329D9C"  title={selectedCategory['title'] ? selectedCategory.title :'Choose category'} />
             </View>
         </>
     );  
