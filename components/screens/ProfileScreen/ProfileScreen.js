@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Avatar, AvatarText, AvatarContainer, UserName, Container, ItemsContainer, ItemText, ItemContainer } from './styles';
-import LikeIcon from '../../svgIcons/LikeIcon';
 import SettingsIcon from '../../svgIcons/SettingsIcon';
 import LogoutIcon from '../../svgIcons/LogoutIcon';
 import PlusIcon from '../../svgIcons/PlusIcon';
@@ -21,10 +20,6 @@ const ProfileScreen = ({ navigation, signOut }) => {
     };
 
     const menuItem = [{
-        title: 'My favorite',
-        icon: <LikeIcon width={'50px'} height={'50px'} />,
-        link: 'favorites'
-    }, {
         title: 'Add new product',
         icon: <PlusIcon width={'50px'} height={'50px'} />,
         link: 'ProductCreate'

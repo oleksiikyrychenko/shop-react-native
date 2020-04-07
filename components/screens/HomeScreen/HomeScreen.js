@@ -6,14 +6,12 @@ import Product from '../../commonBlocks/Product';
 import { ProductsContainer } from './styles';
 
 const HomeScreen = ({ products, productsList, navigation }) => {
-
     React.useEffect(() => {
         if(products.length === 0) {
             productsList();
         }
     });
 
-    console.log(products);
     return (
         <SafeAreaView>
             <ScrollView vertical={true}>

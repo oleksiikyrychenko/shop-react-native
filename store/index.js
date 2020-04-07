@@ -7,11 +7,13 @@ import saga from './saga';
 
 import auth from './auth/reducer';
 import products from './products/reducer';
+import favorites from './favorites/reducer';
 const loggerMiddleware = createLogger();
 
 const rootReducer = combineReducers({
     auth,
     products,
+    favorites,
 });
 
 const sagaMiddleware = createSagaMiddleware();

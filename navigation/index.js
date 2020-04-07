@@ -6,16 +6,16 @@ import RegisterScreen from '../components/screens/RegisterScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import BasketScreen from '../components/screens/BasketScreen';
 import SearchScreen from '../components/screens/SearchScreen';
 import ProfileScreen from '../components/screens/ProfileScreen';
 import HomeIcon from '../components/svgIcons/HomeIcon';
-import BasketIcon from '../components/svgIcons/BasketIcon';
 import SearchIcon from '../components/svgIcons/SearchIcon';
 import UserIcon from '../components/svgIcons/UserIcon';
 import ProductCreateScreen from '../components/screens/ProductCreateScreen';
 import ProductViewScreen from '../components/screens/ProductViewScreen';
 import SettingsScreen from '../components/screens/SettingsScreen';
+import FavoritesProducts from '../components/screens/FavoritesProducts';
+import LikeIcon from '../components/svgIcons/LikeIcon';
 
 const Stack = createStackNavigator();
 const Navigator = Stack.Navigator;
@@ -27,7 +27,7 @@ const tabBarOptions = {
     activeTintColor: '#ffffff',
     inactiveTintColor: '#A8D4D4',
     tabStyle: {
-        backgroundColor: '#3A9D9E'
+        backgroundColor: '#BF0B0A'
     }
 };
 
@@ -39,8 +39,8 @@ const getIcons = (name, focused, color, size) => {
             return <SearchIcon width={`${size}px`} height={`${size}px`} color={color} />;
         case 'Profile':
             return <UserIcon width={`${size}px`} height={`${size}px`} color={color} />;
-        case 'Basket':
-            return <BasketIcon width={`${size}px`} height={`${size}px`} color={color} />;
+        case 'Favorites':
+            return <LikeIcon width={`${size}px`} height={`${size}px`} color={color} />;
     }
 };
 
@@ -53,7 +53,7 @@ const AppNavigation = () => {
                 }
             })}>
             <TabScreen name="Home" component={HomeScreen} />
-            <TabScreen name="Basket" component={BasketScreen}/>
+            <TabScreen name="Favorites" component={FavoritesProducts}/>
             <TabScreen name="Search" component={SearchScreen}/>
             <TabScreen name="Profile" component={ProfileScreen}/>
         </TabNavigator>
