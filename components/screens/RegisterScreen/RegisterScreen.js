@@ -2,11 +2,11 @@ import React from 'react';
 import { Container, Background, Title, BottomContainer, Link, RegisterLink } from 'common-styles';
 import { ScrollView, SafeAreaView, Alert } from 'react-native';
 import backgroundImage from 'assets/images/auth-bg.png';
-import AuthorizationForm from 'forms/AuthorizationForm';
+import AuthorizationForm from 'components/forms/AuthorizationForm';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { register } from '../../../store/auth/actions';
+import { register } from 'store/auth/actions';
 
 const validationSchema = yup.object().shape({
     first_name: yup.string()
@@ -42,7 +42,8 @@ const RegisterScreen = ({ navigation, register }) => {
     }, {
         name: 'password',
         placeholder: 'Password',
-        type: 'password'
+        type: 'password',
+        secureTextEntry: true
     }];
 
     const onSubmit = async (values) => {

@@ -5,7 +5,7 @@ padding: 36px 44px;
 `;
 
 export const Avatar = styled.View`
-background-color: #3A9D9E;
+background-color: #BF0B0A;
 width: 93px;
 height: 93px;
 border-radius: 50px;

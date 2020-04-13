@@ -26,6 +26,7 @@ const LoginScreen = ({ navigation, login }) => {
         name: 'password',
         placeholder: 'Password',
         type: 'password',
+        secureTextEntry: true
     }];
 
     const onSubmit = async ({ email, password }) => {

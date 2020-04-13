@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Avatar, AvatarText, AvatarContainer, UserName, Container, ItemsContainer, ItemText, ItemContainer } from './styles';
-import SettingsIcon from '../../svgIcons/SettingsIcon';
-import LogoutIcon from '../../svgIcons/LogoutIcon';
-import PlusIcon from '../../svgIcons/PlusIcon';
 import { TouchableWithoutFeedback } from 'react-native';
-import {signOut} from '../../../store/auth/actions';
+import { signOut } from 'store/auth/actions';
+import PropTypes from 'prop-types';
+import SettingsIcon from 'components/svgIcons/SettingsIcon';
+import LogoutIcon from 'components/svgIcons/LogoutIcon';
+import PlusIcon from 'components/svgIcons/PlusIcon';
 
-const ProfileScreen = ({ navigation, signOut }) => {
-
+const ProfileScreen = ({ navigation, signOut, user }) => {
     const logout = async () => {
         try {
             await signOut();
@@ -32,12 +32,23 @@ const ProfileScreen = ({ navigation, signOut }) => {
         icon: <LogoutIcon width={'50px'} height={'50px'} />,
         callback: logout
     }];
-    
+
+    // TODO replace to utils
+    const getFirstLetterFormString = () => {
+        if(user && user.first_name) {
+            return user.first_name.charAt(0).toUpperCase();
+        }
+
+        return 'U';
+    };
+
     return (
         <Container>
             <AvatarContainer>
                 <Avatar>
-                    <AvatarText>U</AvatarText>
+                    <AvatarText>
+                        {getFirstLetterFormString()}
+                    </AvatarText>
                 </Avatar>
                 <UserName>ProfileScreen</UserName>
             </AvatarContainer>
@@ -53,6 +64,12 @@ const ProfileScreen = ({ navigation, signOut }) => {
             </ItemsContainer>
         </Container>
     );
+};
+
+ProfileScreen.propTypes = {
+    navigation: PropTypes.object,
+    signOut: PropTypes.func,
+    user: PropTypes.object
 };
 
 const mapStateToProps = state => ({

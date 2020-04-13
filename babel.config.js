@@ -5,6 +5,8 @@ module.exports = {
             plugins: [['module-resolver', {
                 alias: {
                     screens: './components/screens/',
+                    components: './components/',
+                    utils: './utils/',
                     'common-styles': './styles/commonStyles/',
                     assets: './assets/',
                     forms: './components/forms/',
