@@ -29,7 +29,7 @@ export const getAuthUser = () => ({
     type: GET_AUTH_USER,
     request: {
         method: 'GET',
-        url: '/user/me'
+        url: '/users/?pk=me'
     }
 });
 

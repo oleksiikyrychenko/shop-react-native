@@ -29,7 +29,6 @@ export default (state = initialState, action) => {
         }
 
         case success(AUTH_LOGIN): {
-            console.log(action);
             axiosController.saveToken(action.data.token);
             return {
                 ...state,
@@ -49,14 +48,13 @@ export default (state = initialState, action) => {
         case success(GET_AUTH_USER): {
             return {
                 ...state,
-                user: action.data.data,
+                user: action.data.user,
                 isAuthenticated: true,
                 status: STATE_STATUSES.SUCCESS,
             };
         }
 
         case success(UPDATE_USER): {
-            console.log(action);
             return {
                 ...state,
                 user: action.data.user,

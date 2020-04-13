@@ -9,24 +9,34 @@ class AxiosController {
         delete axios.defaults.headers.common['Authorization'];
     };
 
-    isTokenExists = async () => {
-        return await AsyncStorage.getItem('token', (error, result) =>{
-            return result;
-        });
-    };
+     isTokenExists = () => {
+         return new Promise((resolve, reject) => {
+             AsyncStorage.getItem('token')
+                 .then(res => {
+                     if (res !== null) {
+                         resolve(res);
+                     } else {
+                         resolve(false);
+                     }
+                 })
+                 .catch(err => reject(err));
+         });
+     };
     
     saveToken = async token => {
         await AsyncStorage.setItem('token', token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.defaults.headers.common['WWW-Authenticate'] = `Bearer ${token}`;
     };
 
     setAuthHeader = (token) => {
-        if (token) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        } else {
-            const token = localStorage.getItem('token');
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        }
+        return new Promise((resolve, reject) => {
+            if (token) {
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                resolve();
+            }
+            reject();
+        })
     };
 }
 

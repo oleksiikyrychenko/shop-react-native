@@ -33,7 +33,7 @@ const LoginScreen = ({ navigation, login }) => {
             await login({ email, password });
             navigation.navigate('Home');
         } catch (e) {
-            Alert.alert('Error', e.error.response.data);
+            Alert.alert('Error', "e.error.response.data");
         }
     };
 
