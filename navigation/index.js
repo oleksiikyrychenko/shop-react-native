@@ -64,7 +64,7 @@ const Navigation = ({ isAuthenticated }) => (
     <Navigator initialRouteName={isAuthenticated ? 'Home' : 'Login'}>
         <Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
-        <Screen name="Home" component={AppNavigation} options={{ headerLeft: null }}/>
+        <Screen name="Home" component={AppNavigation} options={{ headerShown: false }}/>
         <Screen name="ProductCreate" component={ProductCreateScreen} options={{ title: 'Created new product' }} />
         <Screen name="ProductView" component={ProductViewScreen} />
         <Screen name="Settings" component={SettingsScreen} />

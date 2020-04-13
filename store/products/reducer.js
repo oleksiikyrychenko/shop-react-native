@@ -3,12 +3,14 @@ import {
     GET_PRODUCTS,
     GET_PRODUCT,
     GET_CATEGORIES,
-    CREATE_PRODUCT
+    CREATE_PRODUCT,
+    SEARCH_PRODUCTS
 } from './actions';
 import { STATE_STATUSES } from '../../utils/stateStatuses';
 
 const initialState = {
     items: [],
+    foundItems: [],
     item: {},
     categories: [],
     status: STATE_STATUSES.INIT,
@@ -20,6 +22,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SEARCH_PRODUCTS:
         case GET_CATEGORIES:
         case CREATE_PRODUCT:
         case GET_PRODUCT:
@@ -32,6 +35,14 @@ export default (state = initialState, action) => {
                 ...state,
                 status:STATE_STATUSES.SUCCESS,
                 items: action.data.data
+            };
+        }
+
+        case success(SEARCH_PRODUCTS): {
+            return {
+                ...state,
+                status:STATE_STATUSES.SUCCESS,
+                foundItems: action.data
             };
         }
 
@@ -58,6 +69,7 @@ export default (state = initialState, action) => {
             };
         }
 
+        case error(SEARCH_PRODUCTS):
         case error(GET_CATEGORIES):
         case error(CREATE_PRODUCT):
         case error(GET_PRODUCT):

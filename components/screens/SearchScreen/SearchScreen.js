@@ -1,12 +1,33 @@
 import React from 'react';
-import { View, Text,  } from 'react-native';
+import {View, Text, SafeAreaView, ScrollView,} from 'react-native';
+import SearchForm from '../../forms/SearchForm';
+import {ProductsContainer} from '../HomeScreen/styles';
+import Product from '../../commonBlocks/Product';
+import {connect} from 'react-redux';
 
-const SearchScreen = () => {
+const SearchScreen = ({ products, navigation }) => {
     return (
         <View>
-            <Text>SearchScreen</Text>
+            <SearchForm />
+            <SafeAreaView>
+                <ScrollView vertical={true}>
+                    <ProductsContainer>
+                        {products.map((item, index) => (
+                            <Product
+                                key={index}
+                                product={item}
+                                navigation={navigation}
+                            />
+                        ))}
+                    </ProductsContainer>
+                </ScrollView>
+            </SafeAreaView>
         </View>
     );
 };
 
-export default SearchScreen;
+const mapStateToProps = state => ({
+    products: state.products.foundItems
+});
+
+export default connect(mapStateToProps, {})(SearchScreen);

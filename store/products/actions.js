@@ -1,9 +1,18 @@
 export const GET_PRODUCTS = 'GET_PRODUCTS';
-export const productsList = () => ({
+export const productsList = (search = false, searchText = '') => ({
     type: GET_PRODUCTS,
     request: {
         method: 'GET',
-        url: 'product/',
+        url: search ? `products-search/?search=${searchText}` :'product/',
+    }
+});
+
+export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
+export const searchProducts = (searchText = '') => ({
+    type: SEARCH_PRODUCTS,
+    request: {
+        method: 'GET',
+        url: `products-search/?search=${searchText}`,
     }
 });
 
