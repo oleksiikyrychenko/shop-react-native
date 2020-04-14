@@ -1,12 +1,12 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { View, TextInput, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
-import * as yup from 'yup';
-import styled from 'styled-components';
-import SearchGlass from '../../svgIcons/SearchGlass';
 import { connect } from 'react-redux';
-import { searchProducts } from '../../../store/products/actions';
+import { searchProducts } from 'store/products/actions';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import SearchGlass from 'components/svgIcons/SearchGlass';
+import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
     search: yup.string().required('Search is required!')
@@ -19,7 +19,6 @@ color: #fff;
 `;
 
 const SearchForm = ({ searchProducts }) => {
-
     const onSubmit = ({ search }) => {
         searchProducts(search);
     };
