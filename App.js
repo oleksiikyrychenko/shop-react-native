@@ -6,10 +6,6 @@ import store from './store';
 import Navigation from './navigation';
 
 class App extends React.Component {
-    state = {
-        token: null
-    };
-
     render() {
         return (
             <>
