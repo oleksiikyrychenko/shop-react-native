@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import {UploaderBlock, UploaderText} from './styles';
-import PlusIcon from '../../svgIcons/PlusIcon';
+import PlusIcon from 'components/svgIcons/PlusIcon';
+import PropTypes from 'prop-types';
 
 const Uploader = ({ handleImages }) => {
     const [images, setImages] = React.useState([]);
@@ -16,14 +17,13 @@ const Uploader = ({ handleImages }) => {
 
     const handleImagePicker = () => {
         const options = {
-            // noData: true,
             storageOptions: {
                 skipBackup: true,
                 path: 'images',
             },
         };
+
         ImagePicker.showImagePicker(options, response => {
-            console.log(response)
             if(response.uri){
                 const newImages = [...images, response];
                 setImages(newImages);
@@ -50,10 +50,21 @@ const Uploader = ({ handleImages }) => {
                                     source={{ uri: item.uri }}
                                 />
                                 <TouchableOpacity onPress={handleImagePicker} style={{ position: 'absolute', bottom: 0 }}>
-                                    <PlusIcon width={'50px'} height={'50px'} color={'#000'}/>
+                                    <PlusIcon
+                                        width={'50px'}
+                                        height={'50px'}
+                                        color={'#000'}
+                                    />
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => deleteImage(item)} style={{ position: 'absolute', bottom: 0, right: 0, transform: [{ rotate: '45deg' }] }}>
-                                    <PlusIcon width={'50px'} height={'50px'} color={'#000'}/>
+                                <TouchableOpacity
+                                    onPress={() => deleteImage(item)}
+                                    style={{ position: 'absolute', bottom: 0, right: 0, transform: [{ rotate: '45deg' }] }}
+                                >
+                                    <PlusIcon
+                                        width={'50px'}
+                                        height={'50px'}
+                                        color={'#000'}
+                                    />
                                 </TouchableOpacity>
                             </ScrollView>
                         )
@@ -67,10 +78,12 @@ const Uploader = ({ handleImages }) => {
                     </TouchableOpacity>
                 </UploaderBlock>
             }
-            
         </View>
     );
+};
 
+Uploader.propTypes = {
+    handleImages: PropTypes.func
 };
 
 export default Uploader;

@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Button, Modal, Text, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Button, Modal, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import { getCategories } from '../../../store/products/actions';
-import { CategoryContainer, Title } from './styles';
-import ArrowIcon from '../../svgIcons/ArrowIcon';
+import { getCategories } from 'store/products/actions';
+import {BackButton, BackButtonText, CategoryContainer, Title} from './styles';
+import ArrowIcon from 'components/svgIcons/ArrowIcon';
+import PropTypes from 'prop-types';
 
 const CategorySelect = ({ getCategories, categories, onSelectCategory }) => {
     const [showModal, setShowModal ] = React.useState(false);
@@ -45,9 +46,9 @@ const CategorySelect = ({ getCategories, categories, onSelectCategory }) => {
                 onRequestClose={() => setShowModal(false)}
             >
                 <View>
-                    <TouchableOpacity style={{ width: '100%', backgroundColor: '#3A9D9E', height: 40, alignItems: 'center', justifyContent: 'center' }} onPress={handleBackButton}>
-                        <Text style={{ color: '#fff', fontSize: 18 }}>Back</Text>
-                    </TouchableOpacity>
+                    <BackButton onPress={handleBackButton}>
+                        <BackButtonText>Back</BackButtonText>
+                    </BackButton>
                     <SafeAreaView>
                         <ScrollView vertical={true}>
                             {categories.map((category, index) => (
@@ -55,7 +56,12 @@ const CategorySelect = ({ getCategories, categories, onSelectCategory }) => {
                                     <CategoryContainer>
                                         <Title>{category.title}</Title>
                                         {category.has_children &&
-                                            <ArrowIcon width={'24px'} height={'24px'} style={{ transform: [{ rotate: '180deg' }] }} color={'#000'}/>
+                                            <ArrowIcon
+                                                width={'24px'}
+                                                height={'24px'}
+                                                style={{ transform: [{ rotate: '180deg' }] }}
+                                                color={'#000'}
+                                            />
                                         }
                                     </CategoryContainer>
                                 </TouchableOpacity>
@@ -66,10 +72,20 @@ const CategorySelect = ({ getCategories, categories, onSelectCategory }) => {
                 </View>
             </Modal>
             <View>
-                <Button color="#329D9C"  title={selectedCategory['title'] ? selectedCategory.title :'Choose category'} />
+                <Button
+                    color="#BF0B0A"
+                    title={selectedCategory['title'] ? selectedCategory.title :'Choose category'}
+                    onPress={() => setShowModal(true)}
+                />
             </View>
         </>
     );  
+};
+
+CategorySelect.propTypes = {
+    getCategories: PropTypes.func,
+    categories: PropTypes.array,
+    onSelectCategory: PropTypes.func
 };
 
 const mapStateToProps = state => ({

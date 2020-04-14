@@ -14,3 +14,15 @@ export const Title = styled.Text`
 font-size: 18px;
 `;
 
+export const BackButton = styled.TouchableOpacity`
+width: 100%;
+backgroundColor: #BF0B0A; 
+height: 40;
+alignItems: center;
+justifyContent: center;
+`;
+
+export const BackButtonText = styled.Text`
+color: #fff;
+fontSize: 18;
+`;

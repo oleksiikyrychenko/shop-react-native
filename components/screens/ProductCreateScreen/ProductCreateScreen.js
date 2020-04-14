@@ -1,21 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import { Formik } from 'formik';
-import { Button, ButtonTitle, Field } from '../../forms/AuthorizationForm/styles';
+import { Button, ButtonTitle, Field } from 'components/forms/AuthorizationForm/styles';
+import { Container, DescriptionField } from './styles';
+import { connect } from 'react-redux';
+import { createProduct } from 'store/products/actions';
+import Uploader from 'components/commonBlocks/Uploader';
+import CategorySelect from 'components/inputs/CategorySelect';
+import PropTypes from 'prop-types';
 import * as yup from 'yup';
-import {Container, DescriptionField} from './styles';
-import Uploader from '../../commonBlocks/Uploader';
-import CategorySelect from '../../inputs/CategorySelect';
-import {connect} from 'react-redux';
-import {createProduct} from '../../../store/products/actions';
 
 const validationSchema = yup.object().shape({
-    title: yup.string()
-        .required('Title is required!'),
-    description: yup.string()
-        .required('Description is required '),
-    price: yup.string()
-        .required('Price is required ')
+    title: yup.string().required('Title is required!'),
+    description: yup.string().required('Description is required '),
+    price: yup.string().required('Price is required ')
 });
 
 const ProductCreateScreen = ({ createProduct, navigation, authUser }) => {
@@ -29,8 +27,7 @@ const ProductCreateScreen = ({ createProduct, navigation, authUser }) => {
             ...values,
             category_id: category.id,
             files: files,
-            // TODO: auth user should be here
-            owner_id: 1
+            owner_id: authUser.id
         };
 
         await createProduct(data);
@@ -38,45 +35,53 @@ const ProductCreateScreen = ({ createProduct, navigation, authUser }) => {
     };
 
     return (
-        <>
-            <Uploader handleImages={(files) => setImages(files)} />
-            <CategorySelect onSelectCategory={(category) => setCategory(category)}/>
-            <Container>
-                <Formik
-                    onSubmit={onSubmit}
-                    initialValues={{ title: '', description: '', price: '' }}
-                    validationSchema={validationSchema}
-                >
-                    {({handleSubmit, handleChange, errors}) => (
-                        <View>
+        <SafeAreaView>
+            <ScrollView vertical={true}>
+                <Uploader handleImages={(files) => setImages(files)} />
+                <CategorySelect onSelectCategory={(category) => setCategory(category)}/>
+                <Container>
+                    <Formik
+                        onSubmit={onSubmit}
+                        initialValues={{ title: '', description: '', price: '' }}
+                        validationSchema={validationSchema}
+                    >
+                        {({handleSubmit, handleChange}) => (
                             <View>
-                                <Field
-                                    name={'title'}
-                                    onChangeText={handleChange('title')}
-                                    placeholder={'Title'}
-                                />
-                                <Field
-                                    name={'price'}
-                                    onChangeText={handleChange('price')}
-                                    placeholder={'Price'}
-                                    keyboardType='numeric'
-                                />
-                                <DescriptionField
-                                    name={'description'}
-                                    onChangeText={handleChange('description')}
-                                    placeholder={'Description'}
-                                    multiline={true}
-                                />
+                                <View>
+                                    <Field
+                                        name={'title'}
+                                        onChangeText={handleChange('title')}
+                                        placeholder={'Title'}
+                                    />
+                                    <Field
+                                        name={'price'}
+                                        onChangeText={handleChange('price')}
+                                        placeholder={'Price'}
+                                        keyboardType='numeric'
+                                    />
+                                    <DescriptionField
+                                        name={'description'}
+                                        onChangeText={handleChange('description')}
+                                        placeholder={'Description'}
+                                        multiline={true}
+                                    />
+                                </View>
+                                <Button onPress={handleSubmit} >
+                                    <ButtonTitle>Add product</ButtonTitle>
+                                </Button>
                             </View>
-                            <Button onPress={handleSubmit} >
-                                <ButtonTitle>Add product</ButtonTitle>
-                            </Button>
-                        </View>
-                    )}
-                </ Formik>
-            </Container>
-        </>
+                        )}
+                    </ Formik>
+                </Container>
+            </ScrollView>
+        </SafeAreaView>
     );
+};
+
+ProductCreateScreen.propTypes = {
+    createProduct: PropTypes.func,
+    navigation: PropTypes.object,
+    authUser: PropTypes.object
 };
 
 const mapStateToProps = state => ({
