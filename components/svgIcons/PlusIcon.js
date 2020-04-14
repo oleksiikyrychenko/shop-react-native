@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const PlusIcon = ({ width, height, color='#3A9D9E' }) =>{
     return (
@@ -10,6 +11,12 @@ const PlusIcon = ({ width, height, color='#3A9D9E' }) =>{
         </Svg>
 
     );
+};
+
+PlusIcon.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    color: PropTypes.string,
 };
 
 export default PlusIcon;

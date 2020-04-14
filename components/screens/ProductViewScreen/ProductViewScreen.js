@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import {getProduct} from '../../../store/products/actions';
-import {connect} from 'react-redux';
-import ImagesView from '../../commonBlocks/ImagesView';
-import {Container, Title, Description, Price} from "./styles";
+import { View } from 'react-native';
+import { getProduct } from 'store/products/actions';
+import { connect } from 'react-redux';
+import { Container, Title, Description, Price } from './styles';
+import ImagesView from 'components/commonBlocks/ImagesView';
+import PropTypes from 'prop-types';
 
 const ProductViewScreen = ({ route, getProduct, product }) => {
-
     React.useEffect(() => {
         if(route.params.id !== product.id) {
             getProduct(route.params.id);
@@ -23,6 +23,12 @@ const ProductViewScreen = ({ route, getProduct, product }) => {
             </Container>
         </View>
     );
+};
+
+ProductViewScreen.propTypes = {
+    route: PropTypes.object,
+    getProduct: PropTypes.func,
+    product: PropTypes.object
 };
 
 const mapStateToProps = state => ({

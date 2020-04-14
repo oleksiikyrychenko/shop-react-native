@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, Background, Title, BottomContainer, Link, RegisterLink } from 'common-styles';
 import { Alert } from 'react-native';
+import { connect } from 'react-redux';
+import { login } from 'store/auth/actions';
 import backgroundImage from 'assets/images/auth-bg.png';
-import AuthorizationForm from 'forms/AuthorizationForm';
+import AuthorizationForm from 'components/forms/AuthorizationForm';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
-import { connect } from 'react-redux';
-import { login } from '../../../store/auth/actions';
 
 const validationSchema = yup.object().shape({
     email: yup.string()
@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation, login }) => {
             await login({ email, password });
             navigation.navigate('Home');
         } catch (e) {
-            Alert.alert('Error', "e.error.response.data");
+            Alert.alert('Error', 'Please, try again');
         }
     };
 
@@ -59,7 +59,8 @@ const LoginScreen = ({ navigation, login }) => {
 };
 
 LoginScreen.propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    login: PropTypes.func
 };
 
 export default connect(null, { login })(LoginScreen);

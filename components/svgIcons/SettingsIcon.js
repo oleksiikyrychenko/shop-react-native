@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const SettingsIcon = ({ width, height }) =>{
     return (
@@ -8,6 +9,11 @@ const SettingsIcon = ({ width, height }) =>{
             <Path d="M25 34.1275C19.9662 34.1275 15.8725 30.0325 15.8725 25C15.8725 19.965 19.9675 15.87 25 15.87C30.0337 15.87 34.13 19.9663 34.13 25C34.1287 30.0338 30.0337 34.1275 25 34.1275ZM25 17.0588C22.8948 17.0614 20.8766 17.899 19.3881 19.3877C17.8995 20.8764 17.0623 22.8948 17.06 25C17.0626 27.105 17.9 29.123 19.3885 30.6115C20.877 32.1 22.895 32.9374 25 32.94C27.1052 32.9377 29.1236 32.1005 30.6123 30.6119C32.101 29.1234 32.9386 27.1052 32.9412 25C32.9383 22.8948 32.1006 20.8766 30.612 19.388C29.1234 17.8993 27.1052 17.0617 25 17.0588Z" fill="#3A9D9E"/>
         </Svg>
     );
+};
+
+SettingsIcon.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string
 };
 
 export default SettingsIcon;

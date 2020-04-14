@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, View} from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
 import { Button, ButtonTitle, Field } from 'components/forms/AuthorizationForm/styles';
 import { Container, DescriptionField } from './styles';

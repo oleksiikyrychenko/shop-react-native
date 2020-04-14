@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const LikeIconFilled = ({ width, height, color = '#DC0202' }) =>{
     return (
@@ -8,6 +9,12 @@ const LikeIconFilled = ({ width, height, color = '#DC0202' }) =>{
         </Svg>
 
     );
+};
+
+LikeIconFilled.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    color: PropTypes.string,
 };
 
 export default LikeIconFilled;

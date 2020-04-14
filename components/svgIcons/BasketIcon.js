@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, Path, G, Defs, ClipPath, Rect } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const BasketIcon = ({ width, height, color }) =>{
     return (
@@ -15,6 +16,12 @@ const BasketIcon = ({ width, height, color }) =>{
         </Svg>
 
     );
+};
+
+BasketIcon.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    color: PropTypes.string,
 };
 
 export default BasketIcon;

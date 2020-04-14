@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, G, Path, Defs, ClipPath, Rect } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const LogoutIcon = ({ width, height }) =>{
     return (
@@ -17,6 +18,12 @@ const LogoutIcon = ({ width, height }) =>{
         </Svg>
 
     );
+};
+
+LogoutIcon.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    color: PropTypes.string,
 };
 
 export default LogoutIcon;

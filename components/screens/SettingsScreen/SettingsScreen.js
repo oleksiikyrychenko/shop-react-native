@@ -1,21 +1,17 @@
 import React from 'react';
 import { View, Text, Alert } from 'react-native';
-import {Button, ButtonTitle, Field} from '../../forms/AuthorizationForm/styles';
-import {Formik} from 'formik';
+import { Button, ButtonTitle, Field } from 'components/forms/AuthorizationForm/styles';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
-import {updateUser} from '../../../store/auth/actions';
-import styled from "styled-components";
+import { updateUser } from 'store/auth/actions';
+import styled from 'styled-components';
 
 const validationSchema = yup.object().shape({
-    username: yup.string()
-        .required(4, 'Title is required!'),
-    first_name: yup.string()
-        .min(4, 'Description is required '),
-    last_name: yup.string()
-        .min(4, 'Price is required '),
-    email: yup.string()
-        .email('Price is required ')
+    username: yup.string().required(4, 'Title is required!'),
+    first_name: yup.string().min(4, 'Description is required '),
+    last_name: yup.string().min(4, 'Price is required '),
+    email: yup.string().email('Price is required ')
 });
 
 const Container = styled.View`

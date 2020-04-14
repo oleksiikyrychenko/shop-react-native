@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const SearchIcon = ({ width, height, color }) =>{
     return (
@@ -8,6 +9,12 @@ const SearchIcon = ({ width, height, color }) =>{
         </Svg>
 
     );
+};
+
+SearchIcon.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    color: PropTypes.string,
 };
 
 export default SearchIcon;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const UserIcon = ({ width, height, color }) =>{
     return (
@@ -8,6 +9,12 @@ const UserIcon = ({ width, height, color }) =>{
         </Svg>
 
     );
+};
+
+UserIcon.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    color: PropTypes.string,
 };
 
 export default UserIcon;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Svg, Path } from 'react-native-svg';
+import PropTypes from 'prop-types';
 
 const ArrowIcon = ({ width, height, color='#AFAFAF', style }) =>{
     return (
@@ -8,6 +9,13 @@ const ArrowIcon = ({ width, height, color='#AFAFAF', style }) =>{
         </Svg>
 
     );
+};
+
+ArrowIcon.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    color: PropTypes.string,
+    style: PropTypes.object
 };
 
 export default ArrowIcon;

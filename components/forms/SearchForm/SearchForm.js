@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { View, TextInput, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { searchProducts } from 'store/products/actions';
 import PropTypes from 'prop-types';
@@ -38,12 +38,11 @@ const SearchForm = ({ searchProducts }) => {
                             onChangeText={handleChange('search')}
                             placeholderTextColor="#fff"
                         />
-
-                            <View style={{ position: 'absolute', right: 40, top: 10 }}>
-                                <TouchableOpacity onPress={handleSubmit}>
-                                    <SearchGlass />
-                                </TouchableOpacity>
-                            </View>
+                        <View style={{ position: 'absolute', right: 40, top: 10 }}>
+                            <TouchableOpacity onPress={handleSubmit}>
+                                <SearchGlass />
+                            </TouchableOpacity>
+                        </View>
 
                     </View>
                 )}
