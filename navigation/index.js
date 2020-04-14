@@ -1,14 +1,15 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from '../components/screens/LoginScreen';
-import RegisterScreen from '../components/screens/RegisterScreen';
+import LoginScreen from 'components/screens/LoginScreen';
+import RegisterScreen from 'components/screens/RegisterScreen';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import ProductCreateScreen from '../components/screens/ProductCreateScreen';
-import ProductViewScreen from '../components/screens/ProductViewScreen';
-import SettingsScreen from '../components/screens/SettingsScreen';
+import ProductCreateScreen from 'components/screens/ProductCreateScreen';
+import ProductViewScreen from 'components/screens/ProductViewScreen';
+import SettingsScreen from 'components/screens/SettingsScreen';
+// TODO: fix utils alias
 import {axiosController} from '../utils/axiosController';
-import {getAuthUser} from '../store/auth/actions';
+import {getAuthUser} from 'store/auth/actions';
 import axios from 'axios';
 import AppNavigation from './AppNavigation';
 
