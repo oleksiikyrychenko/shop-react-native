@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { Container, ProductImage, Title, Price } from './styles';
-import truncate from 'lodash/truncate';
-import LikeIcon from '../../svgIcons/LikeIcon';
-import { addToFavorite } from '../../../store/favorites/actions';
+import { addToFavorite } from 'store/favorites/actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import truncate from 'lodash/truncate';
+import LikeIcon from 'components/svgIcons/LikeIcon';
 import noImage from 'assets/images/no-image.png';
-import LikeIconFilled from '../../svgIcons/LikeIconFilled';
+import LikeIconFilled from 'components/svgIcons/LikeIconFilled';
 
 const Product = ({ product, navigation, addToFavorite, user }) => {
     const previewImageUrl = product.product_images.length !== 0 ? { uri: product.product_images[0].image } : noImage;
@@ -25,7 +26,7 @@ const Product = ({ product, navigation, addToFavorite, user }) => {
             <TouchableWithoutFeedback onPress={addToFavorites}>
                 <View style={{ position: 'absolute', right: 0, zIndex: 2 }}>
                     {product.added_to_favorites ?
-                        <LikeIconFilled width={'32px'} height={'32px'}/>
+                        <LikeIconFilled width={'24px'} height={'24px'}/>
                         :
                         <LikeIcon width={'32px'} height={'32px'} color={'#fff'}/>
                     }
@@ -43,6 +44,13 @@ const Product = ({ product, navigation, addToFavorite, user }) => {
         </Container>
 
     );
+};
+
+Product.propTypes = {
+    product: PropTypes.object,
+    navigation: PropTypes.object,
+    addToFavorite: PropTypes.func,
+    user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
