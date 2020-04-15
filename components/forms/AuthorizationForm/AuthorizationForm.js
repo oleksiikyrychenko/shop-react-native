@@ -1,6 +1,6 @@
 import React from 'react';
 import {Formik, withFormik} from 'formik';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Field, Button, ButtonTitle, ForgotLink } from './styles';
 import { ValidationText } from 'common-styles';
 import PropTypes from 'prop-types';
@@ -11,7 +11,8 @@ const AuthorizationForm = ({
     buttonText,
     validationSchema,
     initialValues = {},
-    displayForgotLink = false
+    displayForgotLink = false,
+    navigation
 }) => {
     return (
         <View>
@@ -31,7 +32,9 @@ const AuthorizationForm = ({
                             </View>
                         ))}
                         {displayForgotLink &&
-                            <ForgotLink>Forgot password?</ForgotLink>
+                            <TouchableOpacity onPress={() => navigation.navigate('PasswordRecovery')}>
+                                <ForgotLink>Forgot password?</ForgotLink>
+                            </TouchableOpacity>
                         }
                         <Button onPress={handleSubmit} >
                             <ButtonTitle>{buttonText}</ButtonTitle>
@@ -49,6 +52,7 @@ AuthorizationForm.propTypes = {
     fields: PropTypes.array,
     buttonText: PropTypes.string,
     validationSchema: PropTypes.object,
+    navigation: PropTypes.object,
     initialValues: PropTypes.object,
     displayForgotLink: PropTypes.bool
 };

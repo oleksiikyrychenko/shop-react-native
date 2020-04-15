@@ -48,6 +48,7 @@ const LoginScreen = ({ navigation, login }) => {
                     fields={fields}
                     validationSchema={validationSchema}
                     displayForgotLink={true}
+                    navigation={navigation}
                 />
                 <BottomContainer>
                     <Link>Don’t have an account?</Link>

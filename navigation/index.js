@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import ProductCreateScreen from 'components/screens/ProductCreateScreen';
 import ProductViewScreen from 'components/screens/ProductViewScreen';
 import SettingsScreen from 'components/screens/SettingsScreen';
+import PasswordRecoveryScreen from 'components/screens/PasswordRecoveryScreen';
 import {axiosController} from 'utils/axiosController';
 import {getAuthUser} from 'store/auth/actions';
 import axios from 'axios';
@@ -32,7 +33,6 @@ class Navigation extends React.Component {
             .then(async res => {
                 if(res) {
                     await axiosController.setAuthHeader(res);
-                    console.log(axios.defaults.headers.common['Authorization']);
                     await this.props.getAuthUser();
                     this.setState({ checkedSignIn: true });
                 }
@@ -61,6 +61,7 @@ class Navigation extends React.Component {
                     <Screen name="ProductCreate" component={ProductCreateScreen} options={{ title: 'Created new product' }} />
                     <Screen name="ProductView" component={ProductViewScreen} />
                     <Screen name="Settings" component={SettingsScreen} />
+                    <Screen name="PasswordRecovery" component={PasswordRecoveryScreen} options={{headerShown: false}} />
                 </Navigator>
         );
     }
