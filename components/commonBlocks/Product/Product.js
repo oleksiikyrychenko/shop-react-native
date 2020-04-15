@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Alert } from 'react-native';
 import { Container, ProductImage, Title, Price } from './styles';
 import { addToFavorite } from 'store/favorites/actions';
 import { connect } from 'react-redux';
@@ -13,18 +13,22 @@ const Product = ({ product, navigation, addToFavorite, user }) => {
     const previewImageUrl = product.product_images.length !== 0 ? { uri: product.product_images[0].image } : noImage;
 
     const addToFavorites = () => {
-        const data = {
-            user_id: user.id,
-            product_id: product.id
-        };
+        if(!product.added_to_favorites) {
+            const data = {
+                user_id: user.id,
+                product_id: product.id
+            };
 
-        addToFavorite(data);
+            addToFavorite(data);
+        }
+
+        Alert.alert('Warning', 'The product was added to favorites already');
     };
 
     return (
         <Container>
             <TouchableWithoutFeedback onPress={addToFavorites}>
-                <View style={{ position: 'absolute', right: 0, zIndex: 2 }}>
+                <View style={{position: 'absolute', right: 0, zIndex: 2}}>
                     {product.added_to_favorites ?
                         <LikeIconFilled width={'24px'} height={'24px'}/>
                         :
