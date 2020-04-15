@@ -33,7 +33,6 @@ const ProfileScreen = ({ navigation, signOut, user }) => {
         callback: logout
     }];
 
-    // TODO replace to utils
     const getFirstLetterFormString = () => {
         if(user && user.first_name) {
             return user.first_name.charAt(0).toUpperCase();

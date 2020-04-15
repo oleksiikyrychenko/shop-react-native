@@ -3,8 +3,7 @@ import { SafeAreaView, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchFavorites, clearFavorites, deleteFromFavorite } from 'store/favorites/actions';
 import { useIsFocused } from '@react-navigation/native';
-// TODO Alias for utils
-import {STATE_STATUSES} from '../../../utils/stateStatuses';
+import {STATE_STATUSES} from 'utils/stateStatuses';
 import PropTypes from 'prop-types';
 import FavoritesCard from 'components/commonBlocks/FavoritesCard';
 import NoItems from 'components/commonBlocks/NoItems';

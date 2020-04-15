@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { productsList } from 'store/products/actions';
 import { ProductsContainer } from './styles';
 import { useIsFocused } from '@react-navigation/native';
-// TODO Alias for utils
-import { STATE_STATUSES } from '../../../utils/stateStatuses';
+import { STATE_STATUSES } from 'utils/stateStatuses';
 import PropTypes from 'prop-types';
 import Product from 'components/commonBlocks/Product';
 import NoItems from 'components/commonBlocks/NoItems/NoItems';

@@ -2,8 +2,7 @@ import React from 'react';
 import { View, SafeAreaView, ScrollView } from 'react-native';
 import { ProductsContainer } from 'components/screens/HomeScreen/styles';
 import { connect } from 'react-redux';
-// TODO Alias for utils
-import { STATE_STATUSES } from '../../../utils/stateStatuses';
+import { STATE_STATUSES } from 'utils/stateStatuses';
 import PropTypes from 'prop-types';
 import SearchForm from 'components/forms/SearchForm';
 import Product from 'components/commonBlocks/Product';
