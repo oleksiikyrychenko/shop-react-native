@@ -44,3 +44,34 @@ export const updateUser = (data, id) => ({
         }
     }
 });
+
+export const RECOVERY_PASSWORD = 'RECOVERY_PASSWORD';
+export const passwordRecovery = email => ({
+    type: RECOVERY_PASSWORD,
+    request: {
+        method: 'DELETE',
+        url: 'recovery-password/',
+        data: {
+            email
+        }
+    }
+});
+
+export const CHECK_CODE = 'CHECK_CODE';
+export const checkCode = (token) => ({
+    type: CHECK_CODE,
+    request: {
+        method: 'GET',
+        url: `recovery-password/?token=${token}`,
+    }
+});
+
+export const SET_PASSWORD = 'SET_PASSWORD';
+export const setPassword = (data) => ({
+    type: SET_PASSWORD,
+    request: {
+        method: 'PUT',
+        url: 'recovery-password/',
+        data
+    }
+});

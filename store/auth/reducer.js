@@ -4,7 +4,9 @@ import {
     AUTH_REGISTER,
     SIGN_OUT,
     GET_AUTH_USER,
-    UPDATE_USER
+    UPDATE_USER,
+    RECOVERY_PASSWORD,
+    CHECK_CODE, SET_PASSWORD
 } from './actions';
 import { STATE_STATUSES } from '../../utils/stateStatuses';
 import { axiosController } from '../../utils/axiosController';
@@ -21,6 +23,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SET_PASSWORD:
+        case CHECK_CODE:
+        case RECOVERY_PASSWORD:
         case AUTH_LOGIN:
         case UPDATE_USER:
         case GET_AUTH_USER:
@@ -62,6 +67,17 @@ export default (state = initialState, action) => {
             };
         }
 
+        case success(SET_PASSWORD):
+        case success(CHECK_CODE):
+        case success(RECOVERY_PASSWORD): {
+            return {
+                ...state
+            };
+        }
+
+        case error(SET_PASSWORD):
+        case error(CHECK_CODE):
+        case error(RECOVERY_PASSWORD):
         case error(UPDATE_USER):
         case error(AUTH_REGISTER):
         case error(GET_AUTH_USER):
