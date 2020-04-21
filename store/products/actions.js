@@ -1,9 +1,29 @@
+import {initialState} from './reducer';
+import {makeQueryString} from 'utils/helpers';
+
 export const GET_PRODUCTS = 'GET_PRODUCTS';
-export const productsList = (search = false, searchText = '') => ({
-    type: GET_PRODUCTS,
-    request: {
-        method: 'GET',
-        url: search ? `products-search/?search=${searchText}` :'product/',
+export const productsList = (search = false, searchText = '') => (dispatch, getState) => {
+    const currentState = getState();
+    const productsState = currentState.items ? currentState.items : initialState;
+    const paginationString = makeQueryString(productsState.pagination);
+
+    let queryParts = [];
+    queryParts.push(paginationString);
+
+    return dispatch({
+        type: GET_PRODUCTS,
+        request: {
+            method: 'GET',
+            url: search ? `products-search/?search=${searchText}` :'product/',
+        }
+    });
+};
+
+export const SET_PAGINATION = 'SET_PAGINATION';
+export const setPagination = data => ({
+    type: SET_PAGINATION,
+    payload: {
+        data
     }
 });
 
